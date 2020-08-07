@@ -1,10 +1,14 @@
 /*initial push*/
 
+import axios from 'axios';
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+
+axios.get('https://api.github.com/users/huisingas')
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -19,6 +23,7 @@
     and append the returned markup to the DOM as a child of .cards
 */
 
+
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -30,7 +35,8 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -60,3 +66,26 @@ const followersArray = [];
     luishrd
     bigknell
 */
+
+
+const gitCards = document.querySelector('.cards')
+function userProfile(object) {
+
+  // create elements
+
+  const card = document.createElement('div');
+  const image = document.createElement('img');
+  const cardInfo = document.createElement('div');
+  const name = document.createElement('h3');
+  const userNameP = document.createElement('p');
+  const locationP = document.createElement('p');
+  const profileP = document.createElement('p');
+  const gitAddress = document.createElement('a');
+  const followersP = document.createElement('p');
+  const followingP = document.createElement('p');
+  const bioP = document.createElement('p');
+
+
+
+  return card
+}
