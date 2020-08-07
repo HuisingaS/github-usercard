@@ -37,6 +37,20 @@ axios.get('https://api.github.com/users/huisingas')
 
 const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
 
+followersArray.forEach(follower =>{
+  axios.get(`https://api.github.com/users/${follower}`)
+  .then(response => {
+    const other = userProfile(response.data);
+    gitCards.append(other);
+  })
+  .catch(err => {
+    console.log(err.message);
+  });
+})
+
+
+
+
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -67,7 +81,6 @@ const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigkne
     bigknell
 */
 
-
 const gitCards = document.querySelector('.cards')
 function userProfile(object) {
 
@@ -85,7 +98,41 @@ function userProfile(object) {
   const followingP = document.createElement('p');
   const bioP = document.createElement('p');
 
+  // class/attributes/src
+
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
+  name.classList.add('name');
+  userNameP.classList.add('username');
+  image.setAttribute('src', object.avatar_url);
+  gitAddress.setAttribute('href', object.html_url);
 
 
+  // text injection
+
+  name.textContent = object.name;
+  userNameP.textContent = object.login;
+  locationP.textContent = `Location: ${object.location}`;
+  profileP.textContent = 'Profile: ';
+  followersP.textContent = `Followers: ${object.followers}`;
+  followingP.textContent = `Following: ${object.following}`;
+  bioP.textContent = `Bio: ${object.bio}`;
+  gitAddress.textContent = object.html_url;
+
+
+  // create tree
+
+  card.append(image);
+  card.append(cardInfo);
+  cardInfo.append(name);
+  cardInfo.append(userNameP);
+  cardInfo.append(locationP);
+  cardInfo.append(profileP);
+  profileP.append(gitAddress);
+  cardInfo.append(followersP);
+  cardInfo.append(followingP);
+  cardInfo.append(bioP);
+
+  
   return card
 }
